@@ -19,3 +19,20 @@ if (document.getElementById('nav-mobile-btn')) {
         }
     });
 }
+
+// BUTTON TOP
+const btnTop = document.getElementById("btn-top");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 200) {
+        btnTop.classList.remove("opacity-0");
+        btnTop.classList.add("opacity-100");
+    } else {
+        btnTop.classList.remove("opacity-100");
+        btnTop.classList.add("opacity-0");
+    }
+});
+
+btnTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});

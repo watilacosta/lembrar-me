@@ -1,24 +1,84 @@
-# README
+# 📌 Plataforma de Agendamentos Profissionais
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 📖 Sobre o Projeto
 
-Things you may want to cover:
+Este é um sistema SaaS desenvolvido em **Ruby on Rails 8* com **Hotwire** para facilitar o agendamento de serviços entre clientes e profissionais. Os profissionais podem oferecer serviços pagos, e os clientes podem agendar horários disponíveis. O sistema inclui integração com pagamentos e gerenciamento de assinaturas.
 
-* Ruby version
+## 🚀 Tecnologias Utilizadas
 
-* System dependencies
+- **Ruby on Rails 8**
+- **Hotwire (Turbo + Stimulus)**
+- **Devise** (Autenticação)
+- **Pagar.me / Stripe** (Pagamentos)
+- **SQLite** (Banco de dados)
+- **Docker** (Ambiente de desenvolvimento)
 
-* Configuration
+## 📂 Estrutura do Projeto
 
-* Database creation
+```bash
+📦 my-app
+ ┣ 📂 app
+ ┃ ┣ 📂 controllers
+ ┃ ┣ 📂 models
+ ┃ ┣ 📂 views
+ ┃ ┣ 📂 javascript (Stimulus Controllers)
+ ┣ 📂 config
+ ┣ 📂 db
+ ┃ ┣ 📂 migrations
+ ┃ ┣ seeds.rb
+ ┣ 📂 test (Testes automatizados)
+ ┣ 📜 Gemfile
+ ┣ 📜 README.md
+```
 
-* Database initialization
+## 📦 Como Rodar o Projeto
 
-* How to run the test suite
+### 1️⃣ Clonar o repositório
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+git clone https://github.com/watilacosta/lembrar-me
+cd lembrar-me
+```
 
-* Deployment instructions
+### 2️⃣ Configurar o ambiente
 
-* ...
+```bash
+bundle install
+rails bin/setup
+```
+
+### 3️⃣ Iniciar o servidor
+
+```bash
+rails s
+```
+
+Acesse: `http://localhost:3000`
+
+## 🛠️ Funcionalidades
+
+✅ Cadastro e login de usuários (Clientes e Profissionais)\
+✅ Criação e gerenciamento de serviços\
+✅ Agendamento de horários disponíveis\
+✅ Confirmação e cancelamento de agendamentos\
+✅ Processamento de pagamentos\
+✅ Painel para profissionais gerenciarem seus serviços
+
+## 📌 Próximos Passos
+
+- Melhorar interface do usuário (Hotwire interativo)
+- Implementar notificações por email
+- Criar API para integração com aplicativos móveis
+
+## 🤝 Contribuição
+
+Contribuições são bem-vindas! Abra uma issue ou envie um pull request.
+
+## 📄 Licença
+
+Este projeto é open-source sob a licença MIT.
+
+---
+
+🚀 **Feito com 💖 por Wátila Costa**
+

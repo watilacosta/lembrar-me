@@ -16,6 +16,7 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="jdk" jdkName="asdf: 3.4.2" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="tailwindcss" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actioncable (v8.0.1, asdf: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionmailbox (v8.0.1, asdf: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionmailer (v8.0.1, asdf: 3.4.2) [gem]" level="application" />
@@ -61,6 +62,7 @@
     <orderEntry type="library" scope="PROVIDED" name="json (v2.10.1, asdf: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kamal (v2.5.3, asdf: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="language_server-protocol (v3.17.0.4, asdf: 3.4.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="light-service (v0.19.0, asdf: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="lint_roller (v1.1.0, asdf: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="logger (v1.6.6, asdf: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="loofah (v2.24.0, asdf: 3.4.2) [gem]" level="application" />
@@ -143,7 +145,6 @@
     <orderEntry type="library" scope="PROVIDED" name="websocket-extensions (v0.1.5, asdf: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="xpath (v3.2.0, asdf: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="zeitwerk (v2.7.2, asdf: 3.4.2) [gem]" level="application" />
-    <orderEntry type="library" name="tailwindcss" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
     <LOAD_PATH number="0" />

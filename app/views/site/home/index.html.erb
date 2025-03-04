@@ -410,10 +410,10 @@
                 </ul>
               </div>
               <div class="flex items-center block p-8 uppercase">
-                <a href="#_" class="block w-full px-6 py-4 mt-3 text-lg font-semibold text-center text-white bg-gray-900
-                rounded shadow-sm hover:bg-green-600">
-                  Selecionar Plano
-                </a>
+                <%= link_to "Selecionar Plano", new_user_registration_path(plan_id: plan.id),
+                            data: { turbo: false },
+                            class: "block w-full px-6 py-4 mt-3 text-lg font-semibold text-center text-white bg-gray-900
+                            rounded shadow-sm hover:bg-green-600" %>
               </div>
             </div>
           </div>

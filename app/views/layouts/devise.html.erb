@@ -17,6 +17,16 @@
   <%= javascript_importmap_tags %>
 
   <body class="h-full">
-    <%= yield %>
+    <% if user_signed_in? %>
+      <%= render "layouts/shared/devise/navigation" %>
+      <%= render "layouts/shared/devise/sidebar" %>
+      <div class="p-4 sm:ml-64">
+        <div class="p-4 mt-14">
+          <%= yield %>
+        </div>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_02_125330) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_04_181721) do
   create_table "appointments", force: :cascade do |t|
     t.integer "service_id", null: false
     t.integer "client_id", null: false
@@ -29,6 +29,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_02_125330) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["appointment_id"], name: "index_payments_on_appointment_id"
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.decimal "price", precision: 10, scale: 2, null: false
+    t.integer "duration_in_days", null: false
+    t.json "features", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -50,6 +60,30 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_02_125330) do
     t.index ["user_id"], name: "index_services_on_user_id"
   end
 
+  create_table "subscription_payments", force: :cascade do |t|
+    t.integer "subscription_id", null: false
+    t.string "payment_method", null: false
+    t.string "transaction_id"
+    t.string "status", default: "pending"
+    t.decimal "amount", precision: 10, scale: 2, null: false
+    t.string "paid_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscription_id"], name: "index_subscription_payments_on_subscription_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "professional_id", null: false
+    t.integer "plan_id", null: false
+    t.datetime "starts_at", null: false
+    t.datetime "ends_at", null: false
+    t.string "status", default: "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
+    t.index ["professional_id"], name: "index_subscriptions_on_professional_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -69,4 +103,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_02_125330) do
   add_foreign_key "payments", "appointments"
   add_foreign_key "schedules", "users"
   add_foreign_key "services", "users"
+  add_foreign_key "subscription_payments", "subscriptions"
+  add_foreign_key "subscriptions", "plans"
+  add_foreign_key "subscriptions", "users", column: "professional_id"
 end

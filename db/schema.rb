@@ -73,7 +73,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_04_181721) do
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.integer "professional_id", null: false
+    t.integer "user_id", null: false
     t.integer "plan_id", null: false
     t.datetime "starts_at", null: false
     t.datetime "ends_at", null: false
@@ -81,7 +81,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_04_181721) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
-    t.index ["professional_id"], name: "index_subscriptions_on_professional_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -105,5 +105,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_04_181721) do
   add_foreign_key "services", "users"
   add_foreign_key "subscription_payments", "subscriptions"
   add_foreign_key "subscriptions", "plans"
-  add_foreign_key "subscriptions", "users", column: "professional_id"
+  add_foreign_key "subscriptions", "users"
 end

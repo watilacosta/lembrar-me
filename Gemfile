@@ -36,5 +36,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
+gem "awesome_print"
 gem "devise", "~> 4.9"
-gem 'light-service'
+gem "light-service"
+gem "pundit"

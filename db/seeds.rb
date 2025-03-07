@@ -1,6 +1,9 @@
 # Seeds
 puts "Seeding database..."
 
+# Create Admin
+User.create!(name:  "Admin", email: "admin@gmail.com", password: "12345678", role: :admin)
+
 # Create users
 client        = User.create!(name: "João Silva", email: "joao.silva@example.com", password: "12345678", role: 0)
 professional  = User.create!(name: "Manoel Pereira", email: "manoel.p@example.com", password: "12345678", role: 1)
@@ -19,10 +22,10 @@ Appointment.create!(service: service2, client: client, scheduled_at: 3.days.from
 Schedule.create!(user: professional, available_at: 1.day.from_now, booked: false)
 Schedule.create!(user: professional, available_at: 2.days.from_now, booked: true)
 
-# Creste plans
-basic_plan   = Plan.create!(name: "Plano Básico", price: 19.90, duration_in_days: 30)
-pro_plan     = Plan.create!(name: "Plano Pro", price: 29.90, duration_in_days: 30)
-premium_plan = Plan.create!(name: "Plano Premium", price: 49.90, duration_in_days: 30)
+# Create plans
+basic_plan   = Plan.create!(name: "Básico", price: 19.90, duration_in_days: 30)
+pro_plan     = Plan.create!(name: "Pro", price: 29.90, duration_in_days: 30)
+premium_plan = Plan.create!(name: "Premium", price: 49.90, duration_in_days: 30)
 
 # Create subscriptions
 subscription1 = Subscription.create!(

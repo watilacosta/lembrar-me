@@ -2,7 +2,9 @@
 
 class Users::SessionsController < Devise::SessionsController
   def after_sign_in_path_for(resource)
-    dashboard_path
+    return dashboard_path if resource.has_active_subscription?
+
+    plans_path
   end
 
   def after_sign_out_path_for(resource)

@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   resources :appointments
+  resources :plans
   resources :payments
   resources :schedules
   resources :services
   resources :services do
     resources :appointments, only: [ :new, :create, :index ]
   end
+
+  resources :subscriptions
 
   resources :appointments, only: [ :show, :destroy ] do
     member do

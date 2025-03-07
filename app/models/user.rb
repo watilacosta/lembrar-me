@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum :role, { client: 0, professional: 1 }
+  enum :role, { client: 0, professional: 1, admin: 3 }
 
   has_many :services, foreign_key: :user_id, dependent: :destroy
   has_many :appointments, foreign_key: :client_id, dependent: :destroy
@@ -14,4 +14,8 @@ class User < ApplicationRecord
 
   validates :name, :email, presence: true
   validates :email, uniqueness: true
+
+  def has_active_subscription?
+    subscriptions.exists?(status: "active")
+  end
 end

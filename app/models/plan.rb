@@ -4,4 +4,8 @@ class Plan < ApplicationRecord
 
   validates :name, :price, :duration_in_days, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0 }
+
+  def count_active_users
+    users.count
+  end
 end

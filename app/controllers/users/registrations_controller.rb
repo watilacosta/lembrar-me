@@ -52,7 +52,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    new_subscription_path(plan_id: params[:plan_id])
+    return new_subscription_path(plan_id: params[:plan_id]) if params[:plan_id].present?
+
+    plans_path
   end
 
   # The path used after sign up for inactive accounts.

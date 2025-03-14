@@ -1,0 +1,17 @@
+pt-BR:
+  simple_form:
+    labels:
+      defaults: "Campo"
+    hints:
+      defaults: "Preencha corretamente"
+    placeholders:
+      defaults: "Digite aqui"
+    required:
+      text: "obrigatório"
+      mark: "*"
+    error_notification:
+      default_message: "Por favor, verifique os erros abaixo:"
+    components:
+      label: "label"
+      hint: "hint"
+      error: "error"

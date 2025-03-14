@@ -1,9 +1,15 @@
 class SubscriptionsController < BaseController
+  before_action :plan, only: [ :create ]
+
   def new
-    @subscription = Subscription.new(plan_id: params[:plan_id])
+    @subscription = current_user.subscriptions.new(
+      plan_id: params[:plan_id],
+      starts_at: Time.current,
+    )
   end
 
   def create
+    # TODO: Move to organizer
     @subscription = Subscription.new(subscription_params)
 
     if @subscription.save
@@ -14,6 +20,10 @@ class SubscriptionsController < BaseController
   end
 
   private
+
+  def plan
+    @plan ||= Plan.find(subscription_params[:plan_id])
+  end
 
   def subscription_params
     params.require(:subscription).permit(:plan_id, :email)

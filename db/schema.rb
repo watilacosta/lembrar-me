@@ -35,7 +35,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_04_181721) do
     t.string "name", null: false
     t.text "description"
     t.decimal "price", precision: 10, scale: 2, null: false
-    t.integer "duration_in_days", null: false
     t.json "features", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -78,6 +77,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_04_181721) do
     t.datetime "starts_at", null: false
     t.datetime "ends_at", null: false
     t.string "status", default: "active"
+    t.integer "duration_in_days", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["plan_id"], name: "index_subscriptions_on_plan_id"

@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      user: Usuário
+    attributes:
+      user:
+        name: Nome
+        email: E-mail
+        role: Perfil
+        password: Senha
+        password_confirmation: Confirmação de Senha
+    enums:
+      user:
+        role:
+          client: Cliente
+          professional: Profissional
+          admin: Administrador

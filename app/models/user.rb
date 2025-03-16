@@ -15,7 +15,5 @@ class User < ApplicationRecord
   validates :name, :email, presence: true
   validates :email, uniqueness: true
 
-  def has_active_subscription?
-    subscriptions.exists?(status: "active")
-  end
+  def has_active_subscription? = subscriptions.exists?(status: "active")
 end

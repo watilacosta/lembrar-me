@@ -130,6 +130,7 @@
     <orderEntry type="library" scope="PROVIDED" name="sshkit (v1.24.0, asdf: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="stimulus-rails (v1.3.4, asdf: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="stringio (v3.1.5, asdf: 3.4.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="stripe (v13.5.0, asdf: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tailwindcss-rails (v4.1.0, asdf: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tailwindcss-ruby (v4.0.9, asdf: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v1.3.2, asdf: 3.4.2) [gem]" level="application" />

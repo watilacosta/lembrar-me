@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :appointments
-  resources :plans
+  resources :plans, except: [ :show ]
   resources :payments
   resources :schedules
   resources :services

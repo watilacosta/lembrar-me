@@ -1,6 +1,6 @@
 class SchedulePolicy < ApplicationPolicy
   def index?
-    user.present?
+    user.admin? || user.has_active_subscription?
   end
 
   class Scope < ApplicationPolicy::Scope

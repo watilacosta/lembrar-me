@@ -40,4 +40,5 @@ gem "awesome_print"
 gem "devise", "~> 4.9"
 gem "light-service"
 gem "pundit"
-gem 'simple_form'
+gem "simple_form"
+gem "stripe"

@@ -1,16 +1,16 @@
 # Seeds
 puts "Seeding database..."
 
-# Create Admin
+# New Admin
 User.create!(name:  "Admin", email: "admin@gmail.com", password: "12345678", role: :admin)
 
-# Create users
+# New users
 client        = User.create!(name: "João Silva", email: "joao.silva@example.com", password: "12345678", role: 0)
 professional  = User.create!(name: "Manoel Pereira", email: "manoel.p@example.com", password: "12345678", role: 1)
 professional2 = User.create!(name: "Maria Oliveira", email: "maria.oliveira@example.com", password: "12345678", role: 1)
 professional3 = User.create!(name: "Ana Souza", email: "ana.souza@example", password: "12345678", role: 1)
 
-# Create Services
+# New Services
 service1 = Service.create!(
   user: professional,
   title: "Consulta Online",
@@ -24,20 +24,20 @@ service2 = Service.create!(
   price: 120.00
 )
 
-# Create Appointments
+# New Appointments
 Appointment.create!(service: service1, client: client, scheduled_at: 2.days.from_now, status: 0)
 Appointment.create!(service: service2, client: client, scheduled_at: 3.days.from_now, status: 1)
 
-# Create schedules
+# New schedules
 Schedule.create!(user: professional, available_at: 1.day.from_now, booked: false)
 Schedule.create!(user: professional, available_at: 2.days.from_now, booked: true)
 
-# Create plans
+# New plans
 basic_plan   = Plan.create!(name: "Básico", price: 19.90)
 pro_plan     = Plan.create!(name: "Pro", price: 29.90)
 premium_plan = Plan.create!(name: "Premium", price: 49.90)
 
-# Create subscriptions
+# New subscriptions
 subscription1 = Subscription.create!(
   user: professional,
   plan: basic_plan,
@@ -65,7 +65,7 @@ subscription3 = Subscription.create!(
   duration_in_days: 365
 )
 
-# Create subscription payments
+# New subscription payments
 SubscriptionPayment.create!(
   subscription: subscription1,
   amount: 19.90,

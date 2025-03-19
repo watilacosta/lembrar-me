@@ -14,7 +14,7 @@ module Stripe
     def self.actions
       [
         ::Plan::Find,
-        ::Subscrition::Create,
+        ::Subscrition::New,
         ::Stripe::CreateCheckoutSession
       ]
     end

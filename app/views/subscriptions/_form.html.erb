@@ -1,156 +1,119 @@
-<section class="bg-white p-0 md:py-10">
-  <%= simple_form_for subscription, defaults: { input_html: { class: "max-w-screen-xl px-0 2xl:px-0" } } do |f| %>
-    <ol class="items-center flex w-full max-w-2xl text-center text-sm font-medium text-gray-500 dark:text-gray-400 sm:text-base">
-      <li class="after:border-1 flex items-center text-primary-700 after:mx-6 after:hidden after:h-1 after:w-full after:border-b after:border-gray-200 dark:text-primary-500 dark:after:border-gray-700 sm:after:inline-block sm:after:content-[''] md:w-full xl:after:mx-10">
-        <span class="flex items-center after:mx-2 after:text-gray-200 after:content-['/'] dark:after:text-gray-500 sm:after:hidden">
-          <svg class="me-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-               height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-          </svg>
-          Carrinho
-        </span>
-      </li>
+<section class="bg-white p-0 md:py-10 flex justify-start">
+  <div class="w-full md:w-1/2 max-w-[600px] md:mr-0 lg:mr-auto">
+    <%= simple_form_for subscription, defaults: { input_html: { class: "max-w-2xl px-0 2xr:px-0" } } do |f| %>
+      <%= f.hidden_field :plan_id, value: subscription.plan_id %>
+      <%= f.hidden_field :starts_at, value: subscription.starts_at %>
+      <ol class="items-center flex w-full max-w-2xl text-center text-sm font-medium text-gray-500 dark:text-gray-400 sm:text-base">
+        <li class="after:border-1 flex items-center text-primary-700 after:mx-6 after:hidden after:h-1 after:w-full after:border-b after:border-gray-200 dark:text-primary-500 dark:after:border-gray-700 sm:after:inline-block sm:after:content-[''] md:w-full xl:after:mx-10">
+          <span class="flex items-center after:mx-2 after:text-gray-200 after:content-['/'] dark:after:text-gray-500 sm:after:hidden">
+            <svg class="me-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                 height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+            Carrinho
+          </span>
+        </li>
 
-      <li class="after:border-1 flex items-center text-primary-700 after:mx-6 after:hidden after:h-1 after:w-full after:border-b after:border-gray-200 dark:text-primary-500 dark:after:border-gray-700 sm:after:inline-block sm:after:content-[''] md:w-full xl:after:mx-10">
-        <span class="flex items-center after:mx-2 after:text-gray-200 after:content-['/'] dark:after:text-gray-500 sm:after:hidden">
+        <li class="after:border-1 flex items-center text-primary-700 after:mx-6 after:hidden after:h-1 after:w-full after:border-b after:border-gray-200 dark:text-primary-500 dark:after:border-gray-700 sm:after:inline-block sm:after:content-[''] md:w-full xl:after:mx-10">
+          <span class="flex items-center after:mx-2 after:text-gray-200 after:content-['/'] dark:after:text-gray-500 sm:after:hidden">
+            <svg class="me-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+            Checkout
+          </span>
+        </li>
+
+        <li class="flex shrink-0 items-center">
           <svg class="me-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
           </svg>
-          Checkout
-        </span>
-      </li>
+          Order summary
+        </li>
+      </ol>
+      <div class="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12 xl:gap-16">
+        <div class="min-w-0 flex-1 space-y-8">
+          <div class="space-y-4">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-400">Complete sua assinatura</h2>
 
-      <li class="flex shrink-0 items-center">
-        <svg class="me-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-        </svg>
-        Order summary
-      </li>
-    </ol>
-
-    <div class="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12 xl:gap-16">
-      <div class="min-w-0 flex-1 space-y-8">
-        <div class="space-y-4">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-400">Complete sua assinatura</h2>
-
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div>
-              <%= f.input :name,
-                          label: "Nome do Usuário *",
-                          label_html: { class: "mb-2 block text-sm font-medium text-gray-900 dark:text-gray-900" },
-                          input_html: {
-                            value: subscription.user.name,
-                            required: true,
-                            class: "block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900
-                              focus:border-blue-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-100
-                              dark:text-gray-800 dark:placeholder:text-gray-400 dark:focus:border-primary-900
-                              dark:focus:ring-primary-500"
-                          }
-              %>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <%= f.fields_for :user do |u| %>
+                <div>
+                  <%= u.input :name,
+                              label: "Nome do Usuário *",
+                              label_html: { class: "mb-2 block text-sm font-medium text-gray-900 dark:text-gray-900" },
+                              input_html: {
+                                value: subscription.user.name,
+                                required: true,
+                                class: "block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900
+                                  focus:border-blue-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-100
+                                  dark:text-gray-800 dark:placeholder:text-gray-400 dark:focus:border-primary-900
+                                  dark:focus:ring-primary-500"
+                              }
+                  %>
+                </div>
+                <div>
+                  <%= u.input :email,
+                              label: "Email *",
+                              label_html: { class: "mb-2 block text-sm font-medium text-gray-900 dark:text-gray-900"},
+                              input_html: {
+                                value: subscription.user.email,
+                                required: true,
+                                class: "block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900
+                                  focus:border-blue-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-100
+                                  dark:text-gray-800 dark:placeholder:text-gray-400 dark:focus:border-primary-500
+                                  dark:focus:ring-primary-500"
+                              }
+                  %>
+                </div>
+              <% end %>
             </div>
-            <div>
-              <%= f.input :email,
-                          label: "Email *",
-                          label_html: { class: "mb-2 block text-sm font-medium text-gray-900 dark:text-gray-900"},
-                          input_html: {
-                            value: subscription.user.email,
-                            required: true,
-                            class: "block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900
-                              focus:border-blue-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-100
-                              dark:text-gray-800 dark:placeholder:text-gray-400 dark:focus:border-primary-500
-                              dark:focus:ring-primary-500"
-                          }
-              %>
+
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div>
+                <%= f.input :duration_in_days,
+                            as: :select,
+                            collection: [['1 mês', 30], ['6 meses', 180], ['12 meses', 365]],
+                            label: "Escolha a vigência do plano",
+                            prompt: "Selecione a duração",
+                            label_html: { class: "mb-2 block text-sm font-medium text-gray-900 dark:text-gray-900"},
+                            input_html: {
+                              value: subscription.starts_at,
+                              class: "block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900
+                                focus:border-blue-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-100
+                                dark:text-gray-800 dark:placeholder:text-gray-400 dark:focus:border-primary-500
+                                dark:focus:ring-primary-500"
+                            }
+                %>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label for="voucher" class="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-900">
+              Insira um código promocional
+            </label>
+            <div class="flex max-w-md items-center gap-4">
+              <input type="text" id="voucher" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5
+                text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-100
+                dark:text-gray-600 dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                     placeholder="" required />
+              <button type="button" class="flex items-center justify-center rounded-lg bg-green-700 px-5 py-2.5 text-sm
+                font-medium text-gray-100 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300
+                dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-600">
+                Aplicar
+              </button>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div>
-              <%= f.input :duration_in_days,
-                          as: :select,
-                          collection: [['1 mês', 1], ['6 meses', 6], ['12 meses', 12]],
-                          label: "Escolha a vigência do plano",
-                          prompt: "Selecione a duração",
-                          label_html: { class: "mb-2 block text-sm font-medium text-gray-900 dark:text-gray-900"},
-                          input_html: {
-                            value: subscription.starts_at,
-                            class: "block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900
-                              focus:border-blue-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-100
-                              dark:text-gray-800 dark:placeholder:text-gray-400 dark:focus:border-primary-500
-                              dark:focus:ring-primary-500"
-                          }
-              %>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <label for="voucher" class="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-900">
-            Insira um código promocional
-          </label>
-          <div class="flex max-w-md items-center gap-4">
-            <input type="text" id="voucher" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5
-              text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-100
-              dark:text-gray-600 dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                   placeholder="" required />
-            <button type="button" class="flex items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm
-              font-medium text-gray-100 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300
+          <div class="sm:col-span-2">
+            <button type="submit" class="flex w-1/2 items-center justify-center gap-2 rounded-lg bg-blue-700 px-5 py-2.5
+              text-sm font-medium text-gray-100 hover:bg-blue-800 focus:outline-none focus:ring-4  focus:ring-blue-300
               dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-600">
-              Aplicar
+              Ir para pagamento
             </button>
           </div>
         </div>
-
-        <div class="sm:col-span-2">
-          <button type="submit" class="flex w-1/2 items-center justify-center gap-2 rounded-lg border border-gray-200
-            bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10
-            focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400
-            dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">
-            Salvar dados
-          </button>
-        </div>
       </div>
-
-      <div class="mt-6 w-full space-y-6 sm:mt-8 lg:mt-0 lg:max-w-xs xl:max-w-md">
-        <div class="flow-root">
-          <div class="-my-3 divide-y divide-gray-200 dark:divide-gray-800">
-            <dl class="flex items-center justify-between gap-4 py-3">
-              <dt class="text-base font-normal text-gray-500 dark:text-gray-600">Subtotal</dt>
-              <dd class="text-base font-medium text-gray-900 dark:text-gray-600"><%= @plan %></dd>
-            </dl>
-
-            <dl class="flex items-center justify-between gap-4 py-3">
-              <dt class="text-base font-normal text-gray-500 dark:text-gray-600">Savings</dt>
-              <dd class="text-base font-medium text-green-500">0</dd>
-            </dl>
-
-            <dl class="flex items-center justify-between gap-4 py-3">
-              <dt class="text-base font-normal text-gray-500 dark:text-gray-600">Store Pickup</dt>
-              <dd class="text-base font-medium text-gray-900 dark:text-gray-600">$99</dd>
-            </dl>
-
-            <dl class="flex items-center justify-between gap-4 py-3">
-              <dt class="text-base font-normal text-gray-500 dark:text-gray-600">Tax</dt>
-              <dd class="text-base font-medium text-gray-900 dark:text-gray-600">$199</dd>
-            </dl>
-
-            <dl class="flex items-center justify-between gap-4 py-3">
-              <dt class="text-base font-bold text-gray-900 dark:text-gray-600">Total</dt>
-              <dd class="text-base font-bold text-gray-900 dark:text-gray-600">
-                <%= number_to_currency(subscription.amount) %>
-              </dd>
-            </dl>
-          </div>
-        </div>
-
-        <div class="space-y-3">
-          <button type="submit" class="flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5
-            text-sm font-medium text-gray-100 hover:bg-blue-800 focus:outline-none focus:ring-4  focus:ring-blue-300
-            dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-600">
-            Escolher Método de Pagamento
-          </button>
-        </div>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </section>

@@ -1,6 +1,4 @@
 class SubscriptionsController < BaseController
-  before_action :plan, only: [ :create ]
-
   def new
     @subscription = current_user.subscriptions.new(
       plan_id: params[:plan_id],
@@ -9,11 +7,15 @@ class SubscriptionsController < BaseController
   end
 
   def create
-    # TODO: Move to organizer
-    @subscription = Subscription.new(subscription_params)
+    result = Subscription::New.call(subscription_params)
+    # Criar stripe session
+    # Redirecionar para a página de checkout
+    # Se o pagamento for bem sucedido, atualizar a subscription para active
+    # Se o pagamento falhar, atualizar a subscription para erro e enviar um email para o usuário
 
-    if @subscription.save
-      redirect_to root_path, notice: "Subscription was successfully created."
+    if result.success?
+      message = "Parabéns, inscrição realizada com sucesso! Aguarde a confirmação do pagamento."
+      redirect_to dashboard_path, notice: message
     else
       render :new
     end
@@ -21,11 +23,10 @@ class SubscriptionsController < BaseController
 
   private
 
-  def plan
-    @plan ||= Plan.find(subscription_params[:plan_id])
-  end
-
   def subscription_params
-    params.require(:subscription).permit(:plan_id, :email)
+    params.require(:subscription).permit(
+      :user_id, :starts_at, :plan_id, :duration_in_days,
+      user_attributes: [ :email, :name, :id ]
+    )
   end
 end

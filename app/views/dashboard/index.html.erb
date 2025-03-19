@@ -1,13 +1,59 @@
 <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-gray-700">
   Bem vindo ao seu Dashboard
 </h1>
-<p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
-  Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.
-</p>
-<a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white
-  bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-  Learn more
-  <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-  </svg>
-</a>
+
+<% if @user_subscriptions.present? %>
+  <section class="bg-gray-500 py-8 antialiased dark:bg-gray-100 md:py-10">
+    <div class="mx-auto max-w-2xl px-4 2xl:px-0">
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-gray sm:text-2xl mb-2">Obrigado por sua compra!</h2>
+      <div class="space-y-4 sm:space-y-2 rounded-lg border border-gray-100 bg-gray-50 p-6 dark:border-gray-700
+        dark:bg-gray-800 mb-6 md:mb-8">
+        <dl class="sm:flex items-center justify-between gap-4">
+          <dt class="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Data de Início</dt>
+          <dd class="font-medium text-gray-900 dark:text-white sm:text-end">
+            <%= @user_subscriptions.starts_at.strftime("%d/%m/%Y") %>
+          </dd>
+        </dl>
+        <dl class="sm:flex items-center justify-between gap-4">
+          <dt class="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Data final</dt>
+          <dd class="font-medium text-gray-900 dark:text-white sm:text-end">
+            <%= @user_subscriptions.ends_at.strftime("%d/%m/%Y") %>
+          </dd>
+        </dl>
+        <dl class="sm:flex items-center justify-between gap-4">
+          <dt class="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Plano</dt>
+          <dd class="font-medium text-gray-900 dark:text-white sm:text-end">
+            <%= @user_subscriptions.plan.name %>
+          </dd>
+        </dl>
+        <dl class="sm:flex items-center justify-between gap-4">
+          <dt class="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Valor Total</dt>
+          <dd class="font-medium text-gray-900 dark:text-white sm:text-end">
+            <%= number_to_currency(@user_subscriptions.amount) %>
+          </dd>
+        </dl>
+        <dl class="sm:flex items-center justify-between gap-4">
+          <dt class="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Status</dt>
+          <dd class="font-medium text-gray-900 dark:text-white sm:text-end">
+            <%= t("activerecord.enums.subscription.status.#{@user_subscriptions.status}") %>
+          </dd>
+        </dl>
+      </div>
+      <div class="flex items-center space-x-4">
+        <a href="#" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300
+          font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none
+          dark:focus:ring-primary-800">Track your order</a>
+      </div>
+    </div>
+  </section>
+<% else %>
+  <a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white
+    bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+    Learn more
+    <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+         viewBox="0 0 14 10">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M1 5h12m0 0L9 1m4 4L9 9"/>
+    </svg>
+  </a>
+<% end %>

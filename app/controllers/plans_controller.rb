@@ -2,9 +2,7 @@ class PlansController < BaseController
   before_action :set_plan, only: [ :edit, :update ]
 
   def index
-    authorize Plan
-
-    @plans = Plan.all
+    @plans = authorize Plan.where.not(id: current_user.active_subscription&.plan_id)
   end
 
   def edit; end

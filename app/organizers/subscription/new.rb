@@ -6,6 +6,7 @@ class Subscription::New
   def self.call(params)
     with(params: params).reduce(
       User::UpdateAccountAction,
+      Subscription::CancelPendingSubscriptionAction,
       Subscription::CreateAction,
       # Payment::CreatePayment,
       # Subscription::SendEmail

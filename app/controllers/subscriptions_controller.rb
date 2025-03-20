@@ -1,12 +1,14 @@
 class SubscriptionsController < BaseController
   def new
-    @subscription = current_user.subscriptions.new(
+    @subscription = authorize current_user.subscriptions.new(
       plan_id: params[:plan_id],
       starts_at: Time.current,
     )
   end
 
   def create
+    authorize Subscription, :create?
+
     result = Subscription::New.call(subscription_params)
     # Criar stripe session
     # Redirecionar para a página de checkout

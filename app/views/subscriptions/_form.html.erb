@@ -1,6 +1,8 @@
 <section class="bg-white p-0 md:py-10 flex justify-start">
   <div class="w-full md:w-1/2 max-w-[600px] md:mr-0 lg:mr-auto">
-    <%= simple_form_for subscription, defaults: { input_html: { class: "max-w-2xl px-0 2xr:px-0" } } do |f| %>
+    <%= simple_form_for subscription,
+                        data: { turbo: false },
+                        defaults: { input_html: { class: "max-w-2xl px-0 2xr:px-0" } } do |f| %>
       <%= f.hidden_field :plan_id, value: subscription.plan_id %>
       <%= f.hidden_field :starts_at, value: subscription.starts_at %>
       <ol class="items-center flex w-full max-w-2xl text-center text-sm font-medium text-gray-500 dark:text-gray-400 sm:text-base">

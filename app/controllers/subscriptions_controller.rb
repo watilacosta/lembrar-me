@@ -10,14 +10,11 @@ class SubscriptionsController < BaseController
     authorize Subscription, :create?
 
     result = Subscription::New.call(subscription_params)
-    # Criar stripe session
-    # Redirecionar para a página de checkout
     # Se o pagamento for bem sucedido, atualizar a subscription para active
     # Se o pagamento falhar, atualizar a subscription para erro e enviar um email para o usuário
 
     if result.success?
-      message = "Parabéns, inscrição realizada com sucesso! Aguarde a confirmação do pagamento."
-      redirect_to dashboard_path, notice: message
+      redirect_to result.session.url, allow_other_host: true
     else
       render :new
     end

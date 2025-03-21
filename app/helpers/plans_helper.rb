@@ -16,6 +16,6 @@ module PlansHelper
 
 
   def user_has_subscription_by_plan?(plan_id)
-    current_user.subscriptions.where(plan_id:).any?
+    current_user.subscriptions.where(plan_id:, status: :pending).any?
   end
 end

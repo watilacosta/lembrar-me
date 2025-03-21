@@ -8,8 +8,9 @@ class Subscription::New
       User::UpdateAccountAction,
       Subscription::CancelPendingSubscriptionAction,
       Subscription::CreateAction,
-      # Payment::CreatePayment,
-      # Subscription::SendEmail
+      Stripe::CreateCheckoutSessionAction
+      # Update status to active if payment is successful
+      # Update status to error if payment fails and send email to user
     )
   end
 end

@@ -9,8 +9,6 @@ class Subscription::New
       Subscription::CancelPendingSubscriptionAction,
       Subscription::CreateAction,
       Stripe::CreateCheckoutSessionAction
-      # Update status to active if payment is successful
-      # Update status to error if payment fails and send email to user
     )
   end
 end

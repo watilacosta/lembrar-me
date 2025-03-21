@@ -10,8 +10,6 @@ class SubscriptionsController < BaseController
     authorize Subscription, :create?
 
     result = Subscription::New.call(subscription_params)
-    # Se o pagamento for bem sucedido, atualizar a subscription para active
-    # Se o pagamento falhar, atualizar a subscription para erro e enviar um email para o usuário
 
     if result.success?
       redirect_to result.session.url, allow_other_host: true

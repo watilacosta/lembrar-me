@@ -24,4 +24,11 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "dashboard" => "dashboard#index", as: :dashboard
+
+  namespace :webhooks do
+    namespace :stripe do
+      post "payment_intent/succeeded" => "payment_intent#succeeded"
+      post "payment_intent/failed" => "payment_intent#failed"
+    end
+  end
 end

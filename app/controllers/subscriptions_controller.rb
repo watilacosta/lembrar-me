@@ -14,6 +14,8 @@ class SubscriptionsController < BaseController
     if result.success?
       redirect_to result.session.url, allow_other_host: true
     else
+      @subscription = result.subscription
+
       render :new
     end
   end

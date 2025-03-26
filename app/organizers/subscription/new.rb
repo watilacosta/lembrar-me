@@ -8,6 +8,7 @@ class Subscription::New
       User::UpdateAccountAction,
       Subscription::CancelPendingSubscriptionAction,
       Subscription::CreateAction,
+      SubscriptionPayment::CreateAction,
       Stripe::CreateCheckoutSessionAction
     )
   end

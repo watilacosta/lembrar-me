@@ -21,7 +21,7 @@ SimpleForm.setup do |config|
     b.optional :readonly
     b.use :label_input
     b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    b.use :error, wrap_with: { tag: :span, class: :error }
+    b.use :error, wrap_with: { tag: :span, class: "text-red-500 text-sm mt-1" }
   end
 
   config.default_wrapper = :default

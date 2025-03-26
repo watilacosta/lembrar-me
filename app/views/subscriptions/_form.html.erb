@@ -5,6 +5,7 @@
                         defaults: { input_html: { class: "max-w-2xl px-0 2xr:px-0" } } do |f| %>
       <%= f.hidden_field :plan_id, value: subscription.plan_id %>
       <%= f.hidden_field :starts_at, value: subscription.starts_at %>
+
       <ol class="items-center flex w-full max-w-2xl text-center text-sm font-medium text-gray-500 dark:text-gray-400 sm:text-base">
         <li class="after:border-1 flex items-center text-primary-700 after:mx-6 after:hidden after:h-1 after:w-full after:border-b after:border-gray-200 dark:text-primary-500 dark:after:border-gray-700 sm:after:inline-block sm:after:content-[''] md:w-full xl:after:mx-10">
           <span class="flex items-center after:mx-2 after:text-gray-200 after:content-['/'] dark:after:text-gray-500 sm:after:hidden">
@@ -83,7 +84,8 @@
                               class: "block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900
                                 focus:border-blue-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-100
                                 dark:text-gray-800 dark:placeholder:text-gray-400 dark:focus:border-primary-500
-                                dark:focus:ring-primary-500"
+                                dark:focus:ring-primary-500 #{'border-red-500 focus:ring-red-500' if f.object.errors[:email].present?}",
+                              error: true
                             }
                 %>
               </div>

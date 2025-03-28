@@ -1,4 +1,8 @@
 class SubscriptionPolicy < ApplicationPolicy
+  def index?
+    user.admin?
+  end
+
   def new?
     create?
   end

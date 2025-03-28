@@ -1,4 +1,11 @@
 class SubscriptionsController < BaseController
+
+  def index
+    @subscriptions = authorize Subscription.order(
+      Arel.sql("CASE status WHEN 'pending' THEN 0 ELSE 1 END, created_at DESC")
+    )
+  end
+
   def new
     @subscription = authorize current_user.subscriptions.new(
       plan_id: params[:plan_id],

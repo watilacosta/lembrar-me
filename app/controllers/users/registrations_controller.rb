@@ -11,7 +11,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
+    super do |resource|
+      if resource.persisted?
+        Stripe::Customer.create(
+          {
+            email: resource.email,
+            name: resource.name
+          }
+        )
+      end
+    end
   end
 
   # GET /resource/edit

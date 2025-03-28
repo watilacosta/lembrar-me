@@ -1,0 +1,39 @@
+<h2 class="text-2xl">Assinaturas</h2>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
+  <table class="w-full text-sm text-left text-gray-900 bg-white border border-gray-300">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-100 border-b border-gray-300">
+    <tr>
+      <th scope="col" class="px-6 py-3">Usuário</th>
+      <th scope="col" class="px-6 py-3">Plano</th>
+      <th scope="col" class="px-6 py-3">Início</th>
+      <th scope="col" class="px-6 py-3">Término</th>
+      <th scope="col" class="px-6 py-3">Status</th>
+      <th scope="col" class="px-6 py-3">Duração (dias)</th>
+      <th scope="col" class="px-6 py-3">Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @subscriptions.each do |subscription| %>
+        <tr class="bg-gray-50 border-b border-gray-300">
+          <td class="px-6 py-4"><%= subscription.user.name %></td>
+          <td class="px-6 py-4 font-bold"><%= subscription.plan.name %></td>
+          <td class="px-6 py-4"><%= subscription.starts_at.strftime("%d/%m/%Y") %></td>
+          <td class="px-6 py-4"><%= subscription.ends_at.strftime("%d/%m/%Y") %></td>
+          <td class="px-6 py-4 text-green-600 font-bold">
+            <span class="<%= status_badge(subscription.status) %> py-1 px-3 rounded-full text-sm font-semibold">
+              <%= subscription.status %>
+            </span>
+          </td>
+          <td class="px-6 py-4">
+            <div class="mb-1 text-sm text-gray-700">Progresso</div>
+            <%= progress_calculation(subscription) %>
+          </td>
+          <td class="px-6 py-4">
+            <button class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Ver</button>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

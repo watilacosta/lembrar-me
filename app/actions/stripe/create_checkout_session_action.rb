@@ -8,6 +8,7 @@ module Stripe
 
     executed do |ctx|
       ctx[:session] = Stripe::Checkout::Session.create({
+        customer_email: ctx.user.email,
         payment_method_types: [ "card" ],
         line_items: [
          {
@@ -17,7 +18,8 @@ module Stripe
         ],
         mode: "subscription",
         success_url: "http://0.0.0.0:3000/" + "dashboard",
-        cancel_url: "http://0.0.0.0:3000/" + "subscriptions/new?plan_id=#{ctx.subscription.plan.id}"
+        cancel_url: "http://0.0.0.0:3000/" + "subscriptions/new?plan_id=#{ctx.subscription.plan.id}",
+        automatic_tax: { enabled: true }
       })
     end
   end

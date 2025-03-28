@@ -22,6 +22,8 @@ class Subscription < ApplicationRecord
     pending: "pending"
   }
 
+  scope :except_canceled, -> { where.not(status: "canceled") }
+
   def amount
     return plan.price unless duration_in_days.present?
 
@@ -32,5 +34,13 @@ class Subscription < ApplicationRecord
     return if duration_in_days.blank?
 
     self.ends_at = starts_at + duration_in_days.days + EXTRA_DURATION_IN_DAYS
+  end
+
+  def toggle_active!
+    if active?
+      update!(status: "pending")
+    else
+      update!(status: "active")
+    end
   end
 end

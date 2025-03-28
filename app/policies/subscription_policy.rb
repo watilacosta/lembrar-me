@@ -11,6 +11,14 @@ class SubscriptionPolicy < ApplicationPolicy
     user.client? && !user.has_active_subscription?
   end
 
+  def toggle_active?
+    index?
+  end
+
+  def cancel?
+    index?
+  end
+
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     # def resolve

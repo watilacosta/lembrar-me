@@ -18,8 +18,7 @@ module Stripe
         ],
         mode: "subscription",
         success_url: "http://0.0.0.0:3000/" + "dashboard",
-        cancel_url: "http://0.0.0.0:3000/" + "subscriptions/new?plan_id=#{ctx.subscription.plan.id}",
-        automatic_tax: { enabled: true }
+        cancel_url: "http://0.0.0.0:3000/" + "subscriptions/new?plan_id=#{ctx.subscription.plan.id}"
       })
     end
   end

@@ -1,7 +1,6 @@
 class SubscriptionsController < BaseController
-
-  def index
-    @subscriptions = authorize Subscription.order(
+   def index
+    @subscriptions = authorize Subscription.except_canceled.order(
       Arel.sql("CASE status WHEN 'pending' THEN 0 ELSE 1 END, created_at DESC")
     )
   end
@@ -25,6 +24,20 @@ class SubscriptionsController < BaseController
 
       render :new
     end
+  end
+
+  def toggle_active
+    @subscription = authorize Subscription.find(params[:id])
+    @subscription.toggle_active!
+
+    redirect_to subscriptions_path
+  end
+
+   def cancel
+    @subscription = authorize Subscription.find(params[:id])
+    @subscription.update(status: :canceled)
+
+    redirect_to subscriptions_path
   end
 
   private

@@ -8,7 +8,12 @@ Rails.application.routes.draw do
     resources :appointments, only: [ :new, :create, :index ]
   end
 
-  resources :subscriptions, only: [ :index, :new, :create ]
+  resources :subscriptions, only: [ :index, :new, :create ] do
+    member do
+      patch :toggle_active
+      patch :cancel
+    end
+  end
 
   resources :appointments, only: [ :show, :destroy ] do
     member do

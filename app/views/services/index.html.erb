@@ -1,0 +1,62 @@
+<h2 class="text-2xl font-semibold text-gray-900">Serviços</h2>
+
+<div class="flex justify-between items-center mt-6">
+  <p class="text-gray-700">Gerencie seus serviços abaixo:</p>
+  <%= link_to "Adicionar Serviço", new_service_path,
+              class: "px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg shadow hover:bg-blue-700" %>
+</div>
+
+<% if @services.present? %>
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
+    <table class="w-full text-sm text-left text-gray-900 bg-white border border-gray-300">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-100 border-b border-gray-300">
+      <tr class="text-center">
+        <th scope="col" class="px-6 py-3">#</th>
+        <th scope="col" class="px-6 py-3">Serviço</th>
+        <th scope="col" class="px-6 py-3">Descrição</th>
+        <th scope="col" class="px-6 py-3">Preço</th>
+        <th scope="col" class="px-6 py-3">Agendamentos</th>
+        <th scope="col" class="px-6 py-3">Ações</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @services.each_with_index do |service, index| %>
+        <tr class="bg-white border-b border-gray-300 hover:bg-gray-50 transition text-center">
+          <td class="px-6 py-4 font-medium text-gray-900"><%= index + 1 %></td>
+          <td class="px-6 py-4 font-bold text-gray-900"><%= service.title %></td>
+          <td class="px-6 py-4 text-gray-700"><%= service.description %></td>
+          <td class="px-6 py-4 font-medium text-green-600"><%= number_to_currency(service.price, unit: 'R$') %></td>
+          <td class="px-6 py-4 text-gray-700 text">
+            <% if service.appointments.count.positive? %>
+              <%- binding.pry %>
+              <%= link_to service.appointments.count, appointments_path(service_id: service.id),
+                          class: "text-blue-500 hover:underline" %>
+            <% else %>
+              0
+            <% end %>
+          </td>
+          <td class="px-6 py-4">
+            <%= link_to "Editar", edit_service_path(service),
+                       class: "bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold me-2 px-2.5 py-0.5
+                       rounded-sm white:bg-gray-700 dark:text-blue-400 border border-blue-400 inline-flex items-center
+                       justify-center" %>
+
+            <%= link_to "Excluir", service_path(service),
+                       data: {
+                         turbo_confirm: "Você tem certeza que deseja excluir este serviço?",
+                         turbo_method: :delete
+                       },
+                       class: "bg-red-100 hover:bg-red-200 text-red-800 text-xs font-semibold me-2 px-2.5 py-0.5
+                       rounded-sm white:bg-gray-700 dark:text-red-400 border border-red-400 inline-flex items-center
+                       justify-center" %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <div class="text-center mt-20">
+    <p class="text-gray-500 text-lg">Você não tem serviços cadastrados no momento.</p>
+  </div>
+<% end %>

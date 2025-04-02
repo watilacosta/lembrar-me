@@ -1,4 +1,8 @@
 class AppointmentsController < BaseController
+  def index
+    @appointments = authorize Appointment.where(service_id: params[:service_id])
+  end
+
   def new
     @service = Service.find(params[:service_id])
     @appointment = @service.appointments.build(client: current_user)

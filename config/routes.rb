@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   resources :plans, except: [ :show ]
   resources :payments
   resources :schedules
-  resources :services
-  resources :services do
+  resources :services, except: :show do
     resources :appointments, only: [ :new, :create, :index ]
   end
 

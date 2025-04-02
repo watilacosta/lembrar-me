@@ -40,6 +40,7 @@ class Subscription < ApplicationRecord
     if active?
       update!(status: "pending")
     else
+      # TODO: verificar os dados do stripe se está pago antes de ativar
       update!(status: "active")
     end
   end

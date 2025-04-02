@@ -15,7 +15,6 @@
     </thead>
     <tbody>
       <% @subscriptions.each do |subscription| %>
-      <%#= turbo_stream_from "subscriptions_#{subscription.id}" %>
         <tr class="bg-gray-50 border-b border-gray-300">
           <td class="px-6 py-4"><%= subscription.user.name %></td>
           <td class="px-6 py-4 font-bold"><%= subscription.plan.name %></td>

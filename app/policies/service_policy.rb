@@ -1,6 +1,6 @@
 class ServicePolicy < ApplicationPolicy
   def index?
-    user.admin? || user.has_active_subscription?
+    user.admin? || (user.has_active_subscription? && user.professional?)
   end
 
   def new?
@@ -12,15 +12,15 @@ class ServicePolicy < ApplicationPolicy
   end
 
   def create?
-    user.client?
+    user.professional?
   end
 
   def update?
-    user.client? && record.user == user
+    user.professional? && record.user == user
   end
 
   def destroy?
-    user.client? && record.user == user
+    user.professional? && record.user == user
   end
 
   class Scope < ApplicationPolicy::Scope

@@ -1,11 +1,7 @@
-class AppointmentPolicy < ApplicationPolicy
+class CustomerPolicy < ApplicationPolicy
   def index?
-    # TODO: Analisar essa policy se esta é a melhor forma de fazer
-    record.service.user == user
-  end
-
-  def new?
-    index?
+    # TODO: Melhorar a lógica de autorização
+    user.professional? && user.has_active_subscription?
   end
 
   class Scope < ApplicationPolicy::Scope

@@ -5,7 +5,7 @@ class AppointmentsController < BaseController
 
   def new
     @service = Service.find(params[:service_id])
-    @appointment = @service.appointments.build(client: current_user)
+    @appointment = authorize @service.appointments.build
   end
 
   def create
@@ -37,6 +37,10 @@ class AppointmentsController < BaseController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:service_id, :scheduled_at).merge(client: current_user)
+      params.require(:appointment).permit(
+        :service_id,
+        :scheduled_at,
+        customer_attributes: [ :email, :name, :contact_number, :address ]
+      )
   end
 end

@@ -8,7 +8,7 @@ class SubscriptionPolicy < ApplicationPolicy
   end
 
   def create?
-    user.client? && !user.has_active_subscription?
+    user.client?
   end
 
   def toggle_active?

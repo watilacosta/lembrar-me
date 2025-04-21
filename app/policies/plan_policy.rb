@@ -1,6 +1,6 @@
 class PlanPolicy < ApplicationPolicy
   def index?
-    user.admin? || user.client?
+    user.admin? || user.professional?
   end
 
   def edit?

@@ -6,6 +6,7 @@ class AppointmentsController < BaseController
   def new
     @service = Service.find(params[:service_id])
     @appointment = authorize @service.appointments.build
+    @appointment.build_customer
   end
 
   def create

@@ -1,31 +1,92 @@
-<section class="bg-white p-0 md:py-10 flex justify-start">
-  <div class="w-full md:w-1/2 max-w-[600px] md:mr-0 lg:mr-auto">
-    <%= simple_form_for appointment, defaults: { input_html: { class: "max-w-2xl px-0 2xr:px-0" } } do |f| %>
-      <div class="mt-6 sm:mt-8 space-y-4">
-        <div class="space-y-4">
-          <div class="grid grid-cols-1 gap-4">
-            <div>
-              <%#= f.input :title,
-                          label: "Título *",
-                          label_html: { class: "mb-2 block text-sm font-medium text-gray-900 dark:text-gray-900" },
-                          input_html: {
-                            value: service.title,
-                            required: true,
-                            class: "block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900
-                              focus:border-blue-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-100
-                              dark:text-gray-800 dark:placeholder:text-gray-400 dark:focus:border-primary-900
-                              dark:focus:ring-primary-500"
-                          }
-              %>
-            </div>
-            <div class="flex items-center space-x-4">
-              <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
-                focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600
-                dark:hover:bg-blue-700 ark:focus:ring-blue-800">
-                Salvar Serviço
-              </button>
-            </div>
+<section class="bg-white p-4 md:py-10 flex justify-center">
+  <div class="w-full md:w-1/2 max-w-[600px]">
+    <%= simple_form_for appointment, defaults: { input_html: {
+      class: "block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900
+        focus:border-blue-500 focus:ring-blue-500" } } do |f| %>
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Agendar Serviço</h2>
+
+      <div class="space-y-4">
+        <input type="text" value="<%= appointment.service&.title %>" readonly
+          class="block w-full bg-gray-100 border border-gray-300 text-gray-700 text-sm rounded-lg p-2.5 cursor-not-allowed" />
+        <%= f.hidden_field :service_id, value: appointment.service_id %>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Selecione o dia e horário *</label>
+          <div data-controller="scheduler" class="space-y-4">
+            <input type="date"
+                  data-scheduler-target="date"
+                  min="<%= Date.current %>"
+                  class="w-full p-2.5 border border-gray-300 rounded-lg text-sm text-gray-700" />
+
+            <select data-scheduler-target="time"
+                    class="w-full p-2.5 border border-gray-300 rounded-lg text-sm text-gray-700">
+              <option value="">Selecione um horário</option>
+            </select>
+
+            <%= f.hidden_field :scheduled_at, data: { scheduler_target: "scheduledAt" } %>
           </div>
+        </div>
+
+        <%= f.input :status, collection: [
+              ['Pendente', :pending],
+              ['Confirmado', :confirmed],
+              ['Cancelado', :cancelled]
+            ],
+            prompt: "Selecione o status", label: "Status *", required: true,
+            label_html: { class: "block text-sm font-medium text-gray-700 mb-1" } %>
+
+        <div data-controller="customer-selector">
+          <%= f.input :customer_id,
+            as: :select,
+            collection: Customer.all.map { |c| [c.name, c.id] },
+            include_blank: "Selecione um cliente",
+            label: "Cliente *",
+            label_html: { class: "block text-sm font-medium text-gray-700 mb-1" },
+            input_html: {
+              class: "w-full p-2.5 border border-gray-300 rounded-lg text-sm text-gray-700",
+              data: {
+                action: "change->customer-selector#toggle",
+                customer_selector_target: "select"
+              }
+            } %>
+
+
+          <div data-customer-selector-target="nestedForm" class="hidden mt-4 space-y-4">
+            <h3 class="text-sm font-semibold text-gray-800">Novo cliente</h3>
+
+            <%= f.simple_fields_for :customer do |c| %>
+              <%= c.input :name,
+                          label: "Nome *",
+                          required: true,
+                          input_html: {
+                            class: "w-full p-2.5 border border-gray-300 rounded-lg text-sm text-gray-700"
+                          } %>
+
+              <%= c.input :email,
+                          label: "Email",
+                          input_html: {
+                            class: "w-full p-2.5 border border-gray-300 rounded-lg text-sm text-gray-700"
+                          } %>
+
+              <%= c.input :contact_number,
+                          label: "Telefone",
+                          input_html: {
+                            class: "w-full p-2.5 border border-gray-300 rounded-lg text-sm text-gray-700"
+                          } %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-4 pt-6">
+          <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4
+            focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+            Salvar Agendamento
+          </button>
+
+          <%= link_to services_path, class: "text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-4
+            focus:outline-none focus:ring-gray-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center" do %>
+            Voltar
+          <% end %>
         </div>
       </div>
     <% end %>

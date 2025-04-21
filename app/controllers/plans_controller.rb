@@ -22,6 +22,7 @@ class PlansController < BaseController
   end
 
   def plan_params
-    params.require(:plan).permit(:name, :description, :features_list, :price, :stripe_product_id)
+    params.require(:plan)
+          .permit(:name, :description, :features_list, :price, :stripe_product_id)
   end
 end
